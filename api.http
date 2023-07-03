@@ -2,13 +2,25 @@
 GET http://localhost:3000/report/income
 
 ###
-GET http://localhost:3000/report/any/any
+GET http://localhost:3000/report/income/uuid1
 
 ###
-POST http://localhost:3000/report/any
+POST http://localhost:3000/report/income
+Content-Type: application/json
+
+{
+  "source":"Udemy",
+  "amount": 5000
+}
 
 ###
-PUT http://localhost:3000/report/any/any
+PUT http://localhost:3000/report/income/ae93fe0f-051f-4345-82da-17f836660f4e
+Content-Type: application/json
+
+{
+  "source":"Udemy",
+  "amount": 300
+}
 
 ###
-DELETE http://localhost:3000/report/any/any
+DELETE http://localhost:3000/report/income/e94d8139-c909-44ce-9537-ee3e2ecd0207
