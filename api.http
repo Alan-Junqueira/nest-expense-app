@@ -1,5 +1,5 @@
 ###
-GET http://localhost:3000/report/any
+GET http://localhost:3000/report/income
 
 ###
 GET http://localhost:3000/report/any/any
