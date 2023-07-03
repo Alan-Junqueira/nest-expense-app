@@ -1,0 +1,14 @@
+###
+GET http://localhost:3000/report/any
+
+###
+GET http://localhost:3000/report/any/any
+
+###
+POST http://localhost:3000/report/any
+
+###
+PUT http://localhost:3000/report/any/any
+
+###
+DELETE http://localhost:3000/report/any/any
