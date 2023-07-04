@@ -9,7 +9,7 @@ POST http://localhost:3000/report/income
 Content-Type: application/json
 
 {
-  "source":"Udemy",
+  "source": "Udemy",
   "amount": 5000
 }
 
