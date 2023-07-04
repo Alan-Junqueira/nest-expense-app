@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, ParseEnumPipe, ParseUUIDPipe, Post, Put } from '@nestjs/common';
 import { ReportType } from './data';
 import { AppService } from './app.service';
 
@@ -10,7 +10,7 @@ export class AppController {
 
   @Get()
   getAllReports(
-    @Param('type') type: string
+    @Param('type', new ParseEnumPipe(ReportType)) type: string
   ) {
     const reportType = type === "income" ? ReportType.INCOME : ReportType.EXPENSE
     return this.appService.getAllReports(reportType)
@@ -18,8 +18,8 @@ export class AppController {
 
   @Get(':id')
   getReportById(
-    @Param('type') type: string,
-    @Param('id') id: string
+    @Param('type', new ParseEnumPipe(ReportType)) type: string,
+    @Param('id', ParseUUIDPipe) id: string
   ) {
     const reportType = type === "income" ? ReportType.INCOME : ReportType.EXPENSE
     return this.appService.getReportById({ id, type: reportType })
@@ -32,7 +32,7 @@ export class AppController {
       amount: number,
       source: string
     },
-    @Param('type') type: string
+    @Param('type', new ParseEnumPipe(ReportType)) type: string
   ) {
     const reportType = type === "income" ? ReportType.INCOME : ReportType.EXPENSE
     return this.appService.createReport({ type: reportType, newData: { amount, source } })
@@ -40,8 +40,8 @@ export class AppController {
 
   @Put(':id')
   updateReport(
-    @Param('type') type: string,
-    @Param('id') id: string,
+    @Param('type', new ParseEnumPipe(ReportType)) type: string,
+    @Param('id', ParseUUIDPipe) id: string,
     @Body() { amount, source }: {
       amount: number,
       source: string
@@ -54,7 +54,7 @@ export class AppController {
   @HttpCode(204)
   @Delete(':id')
   deleteReport(
-    @Param('id') id: string
+    @Param('id', ParseUUIDPipe) id: string
   ) {
     return this.appService.deleteReport(id)
   }
