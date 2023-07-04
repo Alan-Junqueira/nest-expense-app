@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ReportType, data } from './data';
 import { randomUUID } from 'node:crypto';
+import { ReportResponseDTO } from './dtos/report.dto';
 
 interface IReport {
   amount: number,
@@ -14,16 +15,23 @@ interface IUpdateReport {
 
 @Injectable()
 export class AppService {
-  getAllReports(type: ReportType) {
-    return data.report.filter(report => report.type === type)
+  getAllReports(type: ReportType): ReportResponseDTO[] {
+    return data.report.filter(report => report.type === type).map(report => new ReportResponseDTO(report))
   }
 
-  getReportById({ type, id }: { type: ReportType, id: string }) {
-    return data.report.filter(report => report.type === type).find(report => report.id === id)
+  getReportById({
+    type,
+    id
+  }: { type: ReportType, id: string }): ReportResponseDTO {
+    const report = data.report.filter(report => report.type === type).find(report => report.id === id)
+
+    if (!report) return
+
+    return new ReportResponseDTO(report)
   }
   createReport({
     type, newData
-  }: { type: ReportType, newData: IReport }) {
+  }: { type: ReportType, newData: IReport }): ReportResponseDTO {
     const { amount, source } = newData
 
     const newReport = {
@@ -36,14 +44,14 @@ export class AppService {
     }
 
     data.report.push(newReport)
-    return newReport
+    return new ReportResponseDTO(newReport)
   }
 
   updateReport({
     type,
     newData,
     id
-  }: { type: ReportType, newData: IUpdateReport, id: string }) {
+  }: { type: ReportType, newData: IUpdateReport, id: string }): ReportResponseDTO {
     const { amount, source } = newData
     const reportToUpdate = data.report.filter(report => report.type === type).find(report => report.id === id)
 
@@ -58,7 +66,7 @@ export class AppService {
       updated_at: new Date()
     }
 
-    return data.report[reportIndex]
+    return new ReportResponseDTO(data.report[reportIndex])
   }
   deleteReport(id: string) {
     const reportIndex = data.report.findIndex(report => report.id === id)
