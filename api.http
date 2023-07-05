@@ -2,7 +2,7 @@
 GET http://localhost:3000/report/income
 
 ###
-GET http://localhost:3000/report/income/uuid1
+GET http://localhost:3000/report/income/40c4cc20-c7b2-4158-8707-69d694164e12
 
 ###
 POST http://localhost:3000/report/income
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/report/income/ae93fe0f-051f-4345-82da-17f836660f4e
+PUT http://localhost:3000/report/income/40c4cc20-c7b2-4158-8707-69d694164e12
 Content-Type: application/json
 
 {
@@ -23,4 +23,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/report/income/e94d8139-c909-44ce-9537-ee3e2ecd0207
+DELETE http://localhost:3000/report/income/40c4cc20-c7b2-4158-8707-69d694164e12
+
+###
+GET http://localhost:3000/summary
