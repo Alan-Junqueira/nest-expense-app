@@ -2,7 +2,7 @@
 GET http://localhost:3000/report/income
 
 ###
-GET http://localhost:3000/report/income/40c4cc20-c7b2-4158-8707-69d694164e12
+GET http://localhost:3000/report/income/a571ca25-44d2-44d1-9195-d7061c5d24b9
 
 ###
 POST http://localhost:3000/report/income
@@ -14,11 +14,11 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/report/income/40c4cc20-c7b2-4158-8707-69d694164e12
+PUT http://localhost:3000/report/income/a571ca25-44d2-44d1-9195-d7061c5d24b9
 Content-Type: application/json
 
 {
-  "source":"Udemy",
+  "source":"asadsadsa",
   "amount": 300
 }
 
